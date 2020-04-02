@@ -4,10 +4,9 @@ class FriendshipsController < ApplicationController
     if friend
       current_user.friends << friend
       flash[:success] = 'New Friend!'
-      redirect_to dashboard_path
     else
       flash[:error] = 'Invalid ID!'
-      redirect_to dashboard_path
     end
+    redirect_to dashboard_path
   end
 end

@@ -3,15 +3,15 @@ class GithubService
     @github_token = github_token
   end
 
-  def get_repos
+  def pull_repos
     get_json('/user/repos?page=1&per_page=5')
   end
 
-  def get_followers
+  def pull_followers
     get_json('/user/followers')
   end
 
-  def get_followings
+  def pull_followings
     get_json('/user/following')
   end
 

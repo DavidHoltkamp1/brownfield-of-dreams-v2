@@ -94,5 +94,12 @@ RSpec.describe 'A registered user' do
         expect(page).to have_content(@user2.github_username)
       end
     end
+
+    it 'I cannot friend someone not in the database' do
+      visit '/friendships/dionew1'
+
+      expect(current_path).to eq(dashboard_path)
+      expect(page).to have_content('Invalid ID!')
+    end
   end
 end
