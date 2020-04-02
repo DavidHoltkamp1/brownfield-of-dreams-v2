@@ -24,4 +24,4 @@ Metrics/AbcSize:
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 Metrics/LineLength:
-  Max: 110
+  Max: 112

@@ -122,7 +122,7 @@ RSpec.describe 'A registered user' do
   end
 
   it "can send email invitations" do
-    user = create(:user, github_token: ENV['GITHUB_USER_TOKEN_ea'])
+    user = create(:user, github_token: ENV['GITHUB_USER_TOKEN'])
     visit login_path
 
     fill_in'session[email]', with: user.email

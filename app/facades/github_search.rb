@@ -1,5 +1,4 @@
 class GithubSearch
-
   def initialize(user)
     @github_token = user.github_token
     @id = user.id

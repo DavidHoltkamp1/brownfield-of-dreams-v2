@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email])
+    flash[:notice] = 'User must login to bookmark videos.' if params[:session].nil?
+    user = User.find_by(email: params[:session][:email]) unless params[:session].nil?
     if user&.authenticate(params[:session][:password])
       session[:user_id] = user.id
       redirect_to dashboard_path
