@@ -13,10 +13,10 @@ RSpec.describe 'A registered user' do
       visit dashboard_path
 
       within ".follower-#{@user2.github_username}" do
-        expect(page).to have_link("Add Friend")
+        expect(page).to have_link('Add Friend')
       end
 
-      within ".follower-PaulDebevec" do
+      within '.follower-PaulDebevec' do
         expect(page).to_not have_link('Add Friend')
       end
     end
@@ -28,7 +28,7 @@ RSpec.describe 'A registered user' do
         expect(page).to have_link('Add Friend')
       end
 
-      within ".following-PaulDebevec" do
+      within '.following-PaulDebevec' do
         expect(page).to_not have_link('Add Friend')
       end
     end
@@ -93,6 +93,13 @@ RSpec.describe 'A registered user' do
         expect(page).to have_content(@user2.last_name)
         expect(page).to have_content(@user2.github_username)
       end
+    end
+
+    it 'I cannot friend someone not in the database' do
+      visit '/friendships/dionew1'
+
+      expect(current_path).to eq(dashboard_path)
+      expect(page).to have_content('Invalid ID!')
     end
   end
 end

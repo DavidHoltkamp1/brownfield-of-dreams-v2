@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'vcr'
 require 'webmock/rspec'
@@ -21,7 +21,6 @@ VCR.configure do |config|
   config.filter_sensitive_data('<GITHUB_CLIENT_SECRET>') { ENV['GITHUB_CLIENT_SECRET'] }
 end
 
-
 ActiveRecord::Migration.maintain_test_schema!
 
 Capybara.register_driver :selenium do |app|
@@ -35,10 +34,10 @@ Capybara.configure do |config|
   config.default_max_wait_time = 5
 end
 
-SimpleCov.start "rails"
+SimpleCov.start 'rails'
 
 Shoulda::Matchers.configure do |config|
-    config.integrate do |with|
+  config.integrate do |with|
     with.test_framework :rspec
     with.library :rails
   end
@@ -59,8 +58,8 @@ end
 def stub_to_test_omniauth
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
-    provider: 'github',
-    credentials: {token: ENV['GITHUB_USER_TOKEN']},
-    info: {:nickname => 'DavidHoltkamp1'}
-  })
+                                                                provider: 'github',
+                                                                credentials: { token: ENV['GITHUB_USER_TOKEN'] },
+                                                                info: { nickname: 'DavidHoltkamp1' }
+                                                              })
 end

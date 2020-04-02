@@ -9,21 +9,20 @@ class TutorialSequencer
   end
 
   private
-  attr_reader :tutorial, :sequenced_video_ids
 
-  def videos
-    tutorial.videos.to_a
-  end
+    attr_reader :tutorial, :sequenced_video_ids
 
-  def update_position_if_changed!
-    sequenced_video_ids.each.with_index(1) do |video_id, index|
-      video = videos.find do |video|
-        video.id == video_id.to_i
-      end
+    def videos
+      tutorial.videos.to_a
+    end
 
-      if video.position != index
-        video.update(position: index)
+    def update_position_if_changed!
+      sequenced_video_ids.each.with_index(1) do |video_id, index|
+        video_seq = videos.find do |video|
+          video.id == video_id.to_i
+        end
+
+        video_seq.update(position: index) if video_seq.position != index
       end
     end
-  end
 end

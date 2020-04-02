@@ -28,11 +28,11 @@ class SessionsController < ApplicationController
 
   private
 
-  def auth_github_token
-    request.env['omniauth.auth']['credentials']['token']
-  end
+    def auth_github_token
+      request.env['omniauth.auth']['credentials']['token']
+    end
 
-  def auth_github_username
-    request.env['omniauth.auth']['info']['nickname']
-  end
+    def auth_github_username
+      request.env['omniauth.auth']['info']['nickname']
+    end
 end

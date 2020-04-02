@@ -11,5 +11,4 @@ class Following
 
     User.exists?(github_username: login)
   end
-
 end
