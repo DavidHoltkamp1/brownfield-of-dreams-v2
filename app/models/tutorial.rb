@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Tutorial < ApplicationRecord
   validates_presence_of :title, :description, :thumbnail
   has_many :videos, ->  { order(position: :ASC) }

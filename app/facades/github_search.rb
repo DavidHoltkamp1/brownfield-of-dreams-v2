@@ -1,7 +1,9 @@
-class GithubSearch
+# frozen_string_literal: true
 
-  def initialize(github_token)
-    @github_token = github_token
+class GithubSearch
+  def initialize(user)
+    @github_token = user.github_token
+    @id = user.id
   end
 
   def user_repos
@@ -20,6 +22,15 @@ class GithubSearch
     service.get_followings.map do |following_data|
       Following.new(following_data)
     end
+  end
+
+  def user_bookmarked_videos?
+    return true if User.find(@id).user_videos.empty? == false
+    return false if User.find(@id).user_videos.empty? == true
+  end
+
+  def user_bookmarked_videos
+    UserVideo.get_bookmarked_video_info(@id)
   end
 
   def service

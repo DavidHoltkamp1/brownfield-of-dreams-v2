@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'User' do
@@ -6,7 +8,7 @@ describe 'User' do
 
     visit '/'
 
-    click_on "Sign In"
+    click_on 'Sign In'
 
     expect(current_path).to eq(login_path)
 
@@ -26,8 +28,8 @@ describe 'User' do
 
     visit login_path
 
-    fill_in'session[email]', with: user.email
-    fill_in'session[password]', with: user.password
+    fill_in 'session[email]', with: user.email
+    fill_in 'session[password]', with: user.password
 
     click_on 'Log In'
 
@@ -44,16 +46,43 @@ describe 'User' do
 
   it 'is shown an error when incorrect info is entered', :vcr do
     user = create(:user)
-    fake_email = "email@email.com"
-    fake_password = "123"
+    fake_email = 'email@email.com'
+    fake_password = '123'
 
     visit login_path
 
-    fill_in'session[email]', with: fake_email
-    fill_in'session[password]', with: fake_password
+    fill_in 'session[email]', with: fake_email
+    fill_in 'session[password]', with: fake_password
 
     click_on 'Log In'
 
-    expect(page).to have_content("Looks like your email or password is invalid")
+    expect(page).to have_content('Looks like your email or password is invalid')
+  end
+
+  it 'user can sign in', :vcr do
+    email = 'shani@satterfieldwehner.info'
+    first_name = 'Tyson'
+    last_name = 'Magritte'
+    password = 'password'
+    user_name = first_name + ' ' + last_name
+
+    visit '/'
+
+    click_on 'Register'
+
+    expect(current_path).to eq('/register')
+    expect(page).to have_content('Register')
+
+    fill_in 'user[email]', with: email
+    fill_in 'user[first_name]', with: first_name
+    fill_in 'user[last_name]', with: last_name
+    fill_in 'user[password]', with: password
+    fill_in 'user[password_confirmation]', with: password
+
+    click_on 'Create Account'
+
+    expect(current_path).to eq(dashboard_path)
+    expect(page).to have_content("Logged in as #{user_name}")
+    expect(page).to have_content('This account has not yet been activated. Please check your email.')
   end
 end

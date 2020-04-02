@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Following
   attr_reader :login, :html_url
 
@@ -11,5 +13,4 @@ class Following
 
     User.exists?(github_username: login)
   end
-
 end
