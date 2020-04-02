@@ -13,10 +13,10 @@ RSpec.describe 'A registered user' do
       visit dashboard_path
 
       within ".follower-#{@user2.github_username}" do
-        expect(page).to have_link("Add Friend")
+        expect(page).to have_link('Add Friend')
       end
 
-      within ".follower-PaulDebevec" do
+      within '.follower-PaulDebevec' do
         expect(page).to_not have_link('Add Friend')
       end
     end
@@ -28,7 +28,7 @@ RSpec.describe 'A registered user' do
         expect(page).to have_link('Add Friend')
       end
 
-      within ".following-PaulDebevec" do
+      within '.following-PaulDebevec' do
         expect(page).to_not have_link('Add Friend')
       end
     end

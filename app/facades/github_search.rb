@@ -1,5 +1,4 @@
 class GithubSearch
-
   def initialize(github_token)
     @github_token = github_token
   end

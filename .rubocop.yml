@@ -1,0 +1,38 @@
+# Style/FrozenStringLiteralComment:
+#   Enabled: false
+# Style/Documentation:
+#   Enabled: false
+# Style/ClassAndModuleChildren:
+#   Enabled: false
+# Style/ConditionalAssignment:
+#   Enabled: false
+# Metrics/LineLength:
+#   Enabled: false
+
+AllCops:
+  Exclude:
+    - bin/**/*
+    - config/**/*
+    - coverage/**/*
+    - db/**/*
+    - lib/**/*
+    - log/**/*
+    - node_modules/**/*
+    - public/**/*
+    - spec/**/*
+    - tmp/**/*
+    - vendor/**/*
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+Metrics/LineLength:
+  Max: 100
